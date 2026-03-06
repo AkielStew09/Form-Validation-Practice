@@ -42,14 +42,17 @@ form * {
     margin-bottom: 1.3rem;
 }
 
-#submissionForm input {
-    font-size: 1rem;
-}
-
 .field {
     display: flex;
+    align-items: center;
 }
 
+.fieldIcon {
+    height: 1.2rem;
+    margin: 0 0 0 0.5rem;
+}
+
+/*every input besides submit button*/
 .field>input {
     color: black;
     margin: 0 0 0 0.9rem;
@@ -61,16 +64,10 @@ form * {
 
 .group {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    gap: 2rem;
 }
 
-#mailIcon {
-    height: 1.6rem;
-    margin: 0 0 0 0.4rem;
-}
-
-/* to centre the button */
 .buttonContainer {
     display: flex;
     justify-content: center;
@@ -87,6 +84,5 @@ input#submitBtn {
         background-color: darkgray;
         color: var(--myPurple);
         cursor: pointer;
-        font-weight: bold;
     }
 }
