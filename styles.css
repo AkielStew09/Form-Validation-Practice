@@ -65,6 +65,12 @@ form * {
     justify-content: space-between;
 }
 
+#mailIcon {
+    height: 1.6rem;
+    margin: 0 0 0 0.4rem;
+}
+
+/* to centre the button */
 .buttonContainer {
     display: flex;
     justify-content: center;
@@ -81,5 +87,6 @@ input#submitBtn {
         background-color: darkgray;
         color: var(--myPurple);
         cursor: pointer;
+        font-weight: bold;
     }
 }
