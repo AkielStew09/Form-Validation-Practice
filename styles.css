@@ -43,23 +43,33 @@ form * {
     margin-bottom: 1.3rem;
 }
 
+/*This is an extra div for making the error appear under the rest of the field*/
+/*This .horiz is to keep everything else horizontal,
+ * (the label, textbox and icon), so I can make it and the 
+ * span.error vertically adjacent instead
+ * so now I have the span.error under everything else*/
+
 .horiz {
     display: flex;
     align-items: center;
 }
 
+/*So in the field there are two children: .horiz and span.error
+ * and it's direction is vertical/column so that the span is 
+ * under the horiz(the lable, textbox and icon)*/
 .field {
     display: flex;
     flex-direction: column;
 }
 
+/*Styles the icons*/
 .fieldIcon {
     height: 1.2rem;
     margin: 0 0 0 0.5rem;
 }
 
-/*every input besides submit button*/
-.field input {
+/*Styles the textboxes*/
+.field .textBox {
     color: black;
     margin: 0 0 0 0.9rem;
     flex: 1;
