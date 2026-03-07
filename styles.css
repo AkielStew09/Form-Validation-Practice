@@ -11,6 +11,7 @@
 
 :root {
     --myPurple: #3C0980;
+    --errorColor: #FF5C5C;
 }
 
 body {
@@ -42,9 +43,14 @@ form * {
     margin-bottom: 1.3rem;
 }
 
-.field {
+.horiz {
     display: flex;
     align-items: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
 }
 
 .fieldIcon {
@@ -53,7 +59,7 @@ form * {
 }
 
 /*every input besides submit button*/
-.field>input {
+.field input {
     color: black;
     margin: 0 0 0 0.9rem;
     flex: 1;
@@ -66,6 +72,12 @@ form * {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+}
+
+span.error {
+    color: var(--errorColor);
+    display: block;
+    font-size: 0.7rem;
 }
 
 .buttonContainer {
