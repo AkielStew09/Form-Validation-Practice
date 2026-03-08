@@ -81,7 +81,7 @@ form * {
 
 .field .textBox:invalid {
     background-color: white;
-    border: 4px dashed red;
+    border: 3px dashed red;
 }
 
 .group {
