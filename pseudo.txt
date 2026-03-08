@@ -1,0 +1,27 @@
+The steps I'm considering are:
+
+- grab all the inputs 
+  grab the form
+  grab the error spans
+
+put a submit event listener on the form
+It should check an `allValid` bool function to see if all the fields are valid.
+If not, then call a `showErrors` function that shows all
+error messages, and then prevent default.
+If all fields are valid then give the user a high five.
+
+the allValid() function will return the validty.valid of every field connected with AND's.
+
+the showErrors() function will call each individual showError function such as emailShowError()
+from each input field.
+
+the individual showError functions will test each .validity property that could apply,
+such as .validity.tooShort for the password, and assign an appropriate message via the textContent of the span. The testing will be done using a chain of else if's. Since I'm not using the required attribute to ward off
+empty inputs, in this chain I will need to test for .value equalling the empty string.
+
+The live updating will be done using input event listeners on each input field
+
+The input event listeners should check if the input is valid, and that the .value is not the empty string.
+If all is good, then set the error's textContent to the empty string, and setCustomValidity to the empty
+string too. 
+Else, call the individual showError() function
