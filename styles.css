@@ -76,6 +76,12 @@ form * {
     padding: 0.2rem;
     border-radius: 0.4rem;
     background-color: darkgray;
+    border: 1px solid black;
+}
+
+.field .textBox:invalid {
+    background-color: white;
+    border: 4px dashed red;
 }
 
 .group {
