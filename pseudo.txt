@@ -18,6 +18,7 @@ from each input field.
 the individual showError functions will test each .validity property that could apply,
 such as .validity.tooShort for the password, and assign an appropriate message via the textContent of the span. The testing will be done using a chain of else if's. Since I'm not using the required attribute to ward off
 empty inputs, in this chain I will need to test for .value equalling the empty string.
+I could do this with one function and just pass the input element and span
 
 The live updating will be done using input event listeners on each input field
 
