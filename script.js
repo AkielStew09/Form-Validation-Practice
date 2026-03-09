@@ -14,3 +14,18 @@ const countryError = document.querySelector("#countryError");
 const postalCodeError = document.querySelector("#postalCodeError");
 const pwError = document.querySelector("#pwError");
 const pwConfirmError = document.querySelector("#pwConfirmError");
+
+form.addEventListener("submit", (e) => {
+    //if everything is not all right...
+    if (!allValid()) {
+        //then show all the errors
+        showAllErrors();
+
+        //then stop the form from submitting
+        e.preventDefault();
+    }
+    else {
+        //if everything IS alright then give a high five
+        alert("SUCCESS! You get a high five.");
+    }
+})
