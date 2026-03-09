@@ -5,6 +5,8 @@ const postalCode = document.querySelector("#postalCode");
 const pw = document.querySelector("#pw");
 const pwConfirm = document.querySelector("#pwConfirm");
 
+let elements = [email, country, postalCode, pw, pwConfirm];
+
 //grab the form
 const form = document.querySelector("#submissionForm");
 
@@ -28,4 +30,15 @@ form.addEventListener("submit", (e) => {
         //if everything IS alright then give a high five
         alert("SUCCESS! You get a high five.");
     }
-})
+});
+
+//returns whether all fields are valid
+const allValid = () => {
+    elements.forEach((element) => {
+        //if any of the elements is invalid, return false
+        if (!element.validity.valid) {
+            return false;
+        }
+    });
+    return true;
+}
