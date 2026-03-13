@@ -17,6 +17,15 @@ const postalCodeError = document.querySelector("#postalCodeError");
 const pwError = document.querySelector("#pwError");
 const pwConfirmError = document.querySelector("#pwConfirmError");
 
+let errors = {
+    [`${email.id}`]: emailError,
+    [`${country.id}`]: countryError,
+    [`${postalCode.id}`]: postalCodeError,
+    [`${pw.id}`]: pwError,
+    [`${pwConfirm.id}`]: pwConfirmError
+};
+
+//submit event listener on the form
 form.addEventListener("submit", (e) => {
     //if everything is not all right...
     if (!allValid()) {
@@ -40,5 +49,39 @@ const allValid = () => {
             return false;
         }
     });
+    //if it reaches this point, then all are valid, so return true
     return true;
 }
+
+//calls showError on every element
+const showAllErrors = () => {
+    //for every element
+    for (let i = 0; i < elements.length; ++i) {
+        //call showError and pass each element 
+        //along with its corresponding error
+        showError(elements[i], errors[i]);
+    }
+};
+
+const showError = (element) => {
+    //retrieve the corresponding error since I don't want to have to pass it
+    let error = errors[`${element.id}`];
+
+    if (element.value == "") {
+        let message = ` You need to fill the ${element.name} field.`;
+        element.setCustomValidity(message);
+        error.textContent = message;
+
+    } else if (element.validity.typeMismatch) {
+        error.textContent = "You need to provide a suitable input";
+
+    } else if (element.validity.tooShort) {
+        error.textContent = `The ${element.name} input must be at least ${element.minlength}
+        characters, and you have entered ${element.value.length}`;
+
+    } else if (element.validity.tooLong) {
+        error.textContent = `The ${element.name} input may not exceed ${element.minlength}
+        characters, and you have entered ${element.value.length}`;
+    }
+
+};
