@@ -91,9 +91,10 @@ form * {
 }
 
 span.error {
+    margin-top: 0.4rem;
     color: var(--errorColor);
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 .buttonContainer {
