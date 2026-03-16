@@ -78,7 +78,7 @@ const showError = (element) => {
         error.textContent = message;
 
     } else if (element.validity.typeMismatch) {
-        error.textContent = "You need to provide a suitable input";
+        error.textContent = `You need to provide a suitable ${element.id} input`;
 
     } else if (element.validity.tooShort) {
         error.textContent = `The ${element.name} input must be at least ${element.minLength}
@@ -87,22 +87,40 @@ const showError = (element) => {
     } else if (element.validity.tooLong) {
         error.textContent = `The ${element.name} input may not exceed ${element.minLength}
         characters, and you have entered ${element.value.length}`;
+    } else if (element.id == "pwConfirm" && !pwMatch(element)) {
+        let message = `The passwords must match`;
+        element.setCustomValidity(message);
+        error.textContent = message;
     }
-
 };
 
 //here is the generic event listener
-
+//I will call it on each input element
 const inputListener = (element) => {
+    //grab the corresponding error element
     let error = errors[`${element.id}`];
 
-    //if everything is good, then we set the errors to nothing
-    if (element.validity.valid && element.value !== "") {
-        error.textContent = "";
+    if (element.value !== "" && pwMatch(element)) {
+        //if my custom standards are met then remove my custom errors
         element.setCustomValidity("");
+
+        if (element.validity.valid)
+            error.textContent = "";
     }
     else {
-        if (element.value !== "") {
+        //debug
+        if (!pwMatch(element)) {
+            console.log(`${element.id} doesn't match password`);
+        }
+        if (element.value == "")
+            console.log(`${element.id} is empty`);
+        if (!element.validity.valid) {
+            console.log(`${element.id} is invalid`);
+            console.log(element.validity);
+        }
+
+
+        if (element.value !== "" && pwMatch(element)) {
             element.setCustomValidity("");
         }
         //if we have an problem or it's empty, show errors
@@ -110,22 +128,14 @@ const inputListener = (element) => {
     }
 };
 
-email.addEventListener("input", () => {
-    inputListener(email);
-})
+elements.forEach((elem) => {
+    elem.addEventListener("input", () => inputListener(elem));
+});
 
-country.addEventListener("input", () => {
-    inputListener(country);
-})
-
-postalCode.addEventListener("input", () => {
-    inputListener(postalCode);
-})
-
-pw.addEventListener("input", () => {
-    inputListener(pw);
-})
-
-pwConfirm.addEventListener("input", () => {
-    inputListener(pwConfirm);
-})
+const pwMatch = (element) => {
+    //returns a bool of whether the elements value 
+    if (element.id == "pwConfirm")
+        return (element.value === pw.value);
+    else
+        return true
+}
