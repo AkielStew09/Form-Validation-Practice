@@ -51,7 +51,7 @@ const allValid = () => {
     //make a bool and set it to true by default
     let result = true;
     elements.forEach((element) => {
-        //if any of the elements fails any of the 3 criteria
+        //if any of the elements fails any of my 3 criteria
         //assign false to result
         if (!element.validity.valid || element.value == "" || !pwMatch(element)) {
             alert(`${element.id} has a problem`);
@@ -60,19 +60,19 @@ const allValid = () => {
             alert(`${element.id} has no problems`);
         }
     });
-    //if it reaches this point, then result should be true
-    //return result
+    //if result reaches this point without turning false
+    //then all are valid
     return result;
 }
 
 //calls showError on every element
 const showAllErrors = () => {
-    //for every element
     elements.forEach((elem) => {
         showError(elem);
     })
 };
 
+//show the appropriate error for an element
 const showError = (element) => {
     console.log(`showError is running on ${element.id}`);
     //retrieve the corresponding error since I don't want to have to pass it
@@ -102,9 +102,8 @@ const showError = (element) => {
 };
 
 //here is the generic event listener
-//I will call it on each input element
+//I will attach it to each input element
 const inputListener = (element) => {
-
     //grab the corresponding error element
     let error = errors[`${element.id}`];
 
@@ -113,8 +112,9 @@ const inputListener = (element) => {
         //if both my custom standards are met then remove my custom error
         element.setCustomValidity("");
 
-        //then furthermore if the machines standards are met
-        //then fully clear the error text
+        //then furthermore if the machine's standards are met
+        //that means aboslutely everything is fine
+        //so fully clear the error text
         if (element.validity.valid)
             error.textContent = "";
     }
@@ -122,29 +122,19 @@ const inputListener = (element) => {
     //now show/apply any errors that may be present
     showError(element);
 
+    //and log them for debugging
     logIssues(element)
-
-    // if (!element.validity.valid) {
-    //     //debug
-    //     if (!pwMatch(element)) {
-    //         console.log(`${element.id} doesn't match password`);
-    //     }
-    //     if (element.value == "")
-    //         console.log(`${element.id} is empty`);
-    //
-    //     if (element.value !== "" && pwMatch(element)) {
-    //         element.setCustomValidity("");
-    //     }
-    //     //if we have an problem or it's empty, show errors
-    // }
 };
 
+//put the listener on each input
 elements.forEach((elem) => {
     elem.addEventListener("input", () => inputListener(elem));
 });
 
+//check whether the pwConfirm matches the pw
 const pwMatch = (element) => {
     //returns a bool of whether the elements value 
+    //is the same as the password's value
     if (element.id == "pwConfirm")
         return (element.value === pw.value);
     else
