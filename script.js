@@ -54,10 +54,10 @@ const allValid = () => {
         //if any of the elements fails any of my 3 criteria
         //assign false to result
         if (!element.validity.valid || element.value == "" || !pwMatch(element)) {
-            alert(`${element.id} has a problem`);
+            console.log(`${element.id} has a problem`);
             result = false;
         } else {
-            alert(`${element.id} has no problems`);
+            console.log(`${element.id} has no problems`);
         }
     });
     //if result reaches this point without turning false
