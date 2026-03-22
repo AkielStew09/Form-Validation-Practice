@@ -36,7 +36,10 @@ form.addEventListener("submit", (e) => {
         //then show/assign all the errors
         showAllErrors();
 
-        //then stop the form from submitting
+        //scold the user
+        alert("You may not submit while there are invalid fields.");
+
+        //and stop the form from submitting
         e.preventDefault();
     }
     else {
